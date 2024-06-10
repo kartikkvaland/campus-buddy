@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VidTube</title>
+    
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            margin: 0;
+            padding: 0;
+          
+        }
+        a{
+            text-decoration: none;
+            color: #5a5a5a;
+        }
+        img{
+            cursor: pointer;
+        }
+        .flex-div{
+            height: 70px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 10px 1%;
+            justify-content: space-evenly;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background: #fff;
+            position: fixed;
+            top: 0;
+            z-index: 10;
+        
+          
+        }
+        .card{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 10px 1%;
+            justify-content: flex-start;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background: #fff;
+            z-index: 10;
+        }
+        .nav-left{
+            padding: 2%;
+            left: 0;
+            width: auto;
+            box-shadow: 0 0 0px;
+  
+        }
+        .nav-mid{
+            margin: 1px;
+            width: auto;
+            box-shadow:0 0 0px ;
+        }
+        .nav-right{
+            right: 0;
+            width: auto;
+            box-shadow:0 0 0px ;
+        }
+        .nav-right img{
+            width: 25px;
+            height: 25px;
+            margin-right: 25px;
+        }
+        .nav-right .ad{
+            height: 35px;
+            width: 35px;
+            border-radius: 50%;
+            margin-right: 40px;
+            
+        } 
+        .nav-left .menu{
+            width: 22px;
+            margin-right: 25px;
+          
+        }
+        .nav-left .logo{
+            width: 130px;
+            
+        }
+       .nav-mid .mic{
+            width:25px;
+        }
+        .searchbox{
+            /* margin-top: 1%; */
+            height: auto;
+            width: auto;
+            box-shadow: 0 0 0px;
+            border: 1px solid #ccc;
+        margin-right: 15px;
+        padding: 8px 12px;
+        border-radius: 25px;
+        position: relative;
+        }
+       #inp{
+        width: 400px;
+        border: 0;
+        outline: 0;
+        background: transparent;
+       }
+       .nav-mid .slog{
+        width: 15px;
+       }
+       .sidebar{
+        background: #fff;
+        width: 15%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        padding-left:2%;
+        padding-top: 100px;
+        /* border: 1px solid        ; */
+       }
+       .sidebar img{
+        width: 25px;
+       
+       }
+       .shortcutlinks a:first-child{
+        color: #ed3833;
+       }
+     .shortcutlinks  a{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        width: fit-content;
+        flex-wrap: wrap;
+       }
+      .shortcutlinks p{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 20px;
+       }
+       .sidebar hr{
+        border: 0;
+        height: 1px;
+        background: #ccc;
+        width: 85%;
+       }
+       .subscribed-list h3{
+        font-size: 13px;
+        margin: 20px 0;
+        color: #5a5a5a;
+       }
+       .subscribed-list a{
+        display:flex;
+        align-items: center;
+        margin-bottom: 20px;
+        width: fit-content;
+        flex-wrap: wrap;
+       }
+       .subscribed-list a img{
+        width: 25px;
+        border-radius: 50%;
+        margin-right: 20px;
+       }
+       .subscribed-list p{
+        font-size: 15px;
+       }
+      .small-sidebar{
+        width: 5%;
+      }
+      .small-sidebar a p{
+        display: none;
+      }
+      .small-sidebar h3{
+        display: none;
+      }
+      .small-sidebar hr{
+        width: 50%;
+        margin-bottom: 25px;
+      }
+    /* .container{
+        background: white;
+        padding-left: 2%;
+        padding-right: 2%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        position:  absolute;
+        top: 10%;
+        margin-left: 15%;
+        width:85%;
+    }  */
+    .container {
+    display: flex;
+    background: white;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%; /* Adjust width to fit entire viewport */
+    margin-right: 250px; /* Add margin to accommodate sidebar */
+}
+
+.btn-upload{
+background-color: transparent;
+border: 0px ;
+margin-top: 4%;
+}
+     /* .large-container{
+    margin-left:5%;
+    width: 95%;
+    }  */
+     /* .banner img{
+        width: 100%;
+        border-radius: 8px;
+    } */
+    .list-container{
+        width: 81%;
+        position: absolute;
+        top: 12%;
+        left: 17%;
+        display: grid;
+        grid-template-columns:1fr 1fr 1fr 1fr;
+        grid-column-gap: 16px;
+        grid-row-gap: 30px;
+    }
+    .large-list-container{
+        position: absolute;
+        top: 13%;
+        left: 7%;
+      width: 91%;
+
+    }
+   .vid-list .thumbnail{
+    width: 100%;
+    border-radius: 5px;
+   }
+   .vid-list .card{
+    align-items: flex-start;
+    margin-top: 7px;
+    box-shadow: 0 0 0px;
+   }
+   .vid-list .card img{
+    width: 35px;
+    margin-right: 10px;
+    border-radius: 50%;
+   }
+   .vid-info{
+    color: #5a5a5a;
+    font-size: 13px;
+   }
+   .vid-info a{
+    color: #000;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 5px;
+   }
+
+   .dropdown {
+  position: relative;
+  display: inline-block;
+  margin-right: 10%;
+}
+
+.dropdown-content {
+  display: none;
+  
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}   
+
+   @media (max-width: 900px) {
+    .menu{
+        display: none;
+    }
+    .sidebar{
+        display: none;
+    }
+    .container, .large-container{
+        position: absolute;
+        right: 1%;
+        width: 420px;
+   }
+   .nav-right img{
+    display: none;
+   }
+   .nav-right .ad{
+    display: block;
+    width: 35px;
+   }
+   .list-container{
+    
+    grid-template-columns: 1fr;
+    position: absolute;
+    top: 32%;
+    left: 5%;
+    width: 405px;
+   }
+  .nav-mid .searchbox #inp{
+    width: 100px;
+  }
+  .nav-mid .mic{
+    display: none;
+  }
+  .logo{
+    width: 90px;
+  }
+}
+    </style>
+</head>
+<body>
+    <nav class="flex-div">
+        <div class="nav-left flex-div">
+            <img src="{% static 'images/menu.png' %}" class="menu" alt="Example Image"> 
+            <img src="{% static 'images/main-logo.png' %}" class="logo" alt="Example Image">
+
+        </div>
+        <div class="nav-mid flex-div">
+            <div class="searchbox flex-div">
+                <input type="text" placeholder="Search" id="inp">
+                <img src="{% static 'images/search.png' %}" class="slog" alt="Example Image">
+            </div>
+            <img src="{% static 'images/v3.webp' %}" class="mic" alt="Example Image">
+        </div>
+        <div class="nav-right flex-div">
+           
+            
+
+            <!-- <form id="upload-form" action="{% url 'upload' %}" method="post" enctype="multipart/form-data"> -->
+                <button action="{% url 'upload' %}" type="button" class="btn-upload" id="upload-btn">
+                    <img src="{% static 'images/upload.png' %}" class="" alt="Upload Image">
+                </button>
+            <!-- </form> -->
+
+            <script>
+                document.getElementById("upload-btn").addEventListener("click", function() {
+                    event.preventDefault();
+                    window.location.href = "{% url 'upload' %}";
+                });
+            </script>
+
+
+
+            <!-- <button class="btn-upload"><img src="{% static 'images/upload.png' %}" class="" alt="Example Image"></button> -->
+            
+            <img src="{% static 'images/more.png' %}" class="" alt="Example Image">
+            <img src="{% static 'images/notification.png' %}" class="" alt="Example Image">
+                <div class="dropdown">
+                     <img src="{% static 'images/ad.jpg' %}" class="ad" alt="Example Image">
+                    <div class="dropdown-content">
+            <button action="{% url 'login' %}" type="button" class="" id="login-btn" style="background-color: transparent; border: none;">
+
+                        Logout
+                </button> 
+                    </div>
+                  </div>
+               
+                
+        <script>
+            document.getElementById("login-btn").addEventListener("click", function() {
+                event.preventDefault();
+                window.location.href = "{% url 'login' %}";
+            });
+        </script>
+        </div>
+    </nav>
+    <!---------------------sidebar--------------------------->
+    <div class="sidebar">
+        <div class="shortcutlinks">
+            
+            <a href=""><img src="{% static 'images/home.png' %}" class="" alt="Example Image">        <p>Home</p></a>               
+            <a href=""><img src="{% static 'images/library.png' %}" class="" alt="Example Image">     <p>Library</p> </a>
+            <a href=""><img src="{% static 'images/history.png' %}" class="" alt="Example Image">     <p>History</p> </a>
+            <a href=""><img src="{% static 'images/show-more.png' %}" class="" alt="Example Image">   <p>Show-more</p>  </a>
+            
+            <hr>
+        </div>
+        <div class="subscribed-list">
+            <h3>SUBSCRIBED</h3>
+            
+            <a href=""><img src="{% static 'images/gerard.png' %}" class="" alt="Example Image"><p>Gerard Lyn</p></a>
+            <a href=""><img src="{% static 'images/jack.png' %}" class="" alt="Example Image"><p>Jack Snyder</p></a>
+            <a href=""><img src="{% static 'images/simon.png' %}" class="" alt="Example Image"><p>Simon Pegg</p></a>
+        </div>
+    </div>
+    <!---------------------Main---------------------------------->
+    <!-- <div class="container">
+        <div class="banner">
+            <   img src="images/banner.png">
+        </div>
+    </div> -->
+    
+    <div class="list-container">
+        <!-- <div class="vid-list">
+            <a href="play1"><img src="{% static 'images/thumbnail111.jpeg' %}" class="thumbnail" alt="Example Image"></a>
+            <div class="card">
+                <img src="{% static 'images/cameron.png' %}" alt="Example Image">
+                <div class="vid-info">
+                    <a href="play1"> Wanna enjoy virtual vacation with family ? Relax and Watch This! </a>
+                    <p>Virtual Tutorials</p>
+                    <p>15m Views &bull; 2 days ago</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="vid-list">
+            <a href="play1"> <img src="{% static 'images/thumbnail11.webp' %}" class="thumbnail" alt="Example Image"></a> 
+            <div class="card">
+                <img src="{% static 'images/Jack.png' %}" alt="Example Image">
+                
+                <div class="vid-info">
+                    <a href="play2"> Where and why to learn cycling that help you to become slim</a>
+                    <p>The Fit Guy</p>
+                    <p>151k Views &bull; 5 days ago</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="vid-list">
+            <a href=""> <img src="{% static 'images/thumbnail3.png' %}" class="thumbnail" alt="Example Image"></a>
+            <div class="card">
+                <img src="{% static 'images/megan.png' %}" alt="Example Image">
+
+                <div class="vid-info">
+                    <a href=""> Reviewing the biggest mall in the south africa , Mall of Africa.</a>
+                    <p>Reviewer</p>
+                    <p>25k Views &bull; 1 week ago</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="vid-list">
+            <a href=""> <img src="{% static 'images/thumbnail4.png' %}" class="thumbnail" alt="Example Image"></a>
+            <div class="card">
+                <img src="{% static 'images/gerard.png' %}" alt="Example Image">
+                <div class="vid-info">
+                    <a href=""> Sight seeing the himalayas in winter with family and friends</a>
+                    <p>Elvish Bhaiii</p>
+                    <p>15k Views &bull; 1 month ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""> <img src="{% static 'images/thumbnail5.png' %}" class="thumbnail" alt="Example Image"></a>
+            <div class="card">
+                <img src="{% static 'images/simon.png' %}" alt="Example Image">
+                <div class="vid-info">
+                    <a href=""> Simons weekly report | five things to take care of in college</a>
+                    <p>Simon Pegg</p>
+                    <p>12k Views &bull; 5 weeks ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""> <img src="{% static 'images/thumbnail6.png' %}" class="thumbnail" alt="Example Image"></a>
+            <div class="card">
+                <img src="{% static 'images/tom.png' %}" alt="Example Image">
+
+                <div class="vid-info">
+                    <a href=""> Test driving the fastest car lamborgini ever made |  Top Gear review</a>
+                    <p>Car-Master</p>
+                    <p>20m Views &bull; 5 months ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""><img src="{% static 'images/thumbnail7.png' %}" class="thumbnail" alt="Example Image"></a>
+            <div class="card">
+                <img src="{% static 'images/simon.png' %}" alt="Example Image">
+
+                <div class="vid-info">
+                    <a href=""> Simons weekly report | five things to take care of in college (part two)</a>
+                    <p>Simon Pegg</p>
+                    <p>8k Views &bull; 6 days ago</p>
+                </div>
+            </div>
+        </div>
+        <div class="vid-list">
+            <a href=""><img src="{% static 'images/thumbnail8.png' %}" class="thumbnail" alt="Example Image"></a>
+            <div class="card">
+                <img src="{% static 'images/tom.png' %}" alt="Example Image">
+
+                <div class="vid-info">
+                    <a href="">Pro's and Con's of buying a sports car from an auction house.</a>
+                    <p>Car-Master</p>
+                    <p>1m Views &bull; 2 weeks ago</p>
+                </div>
+            </div>
+        </div>  -->
+            {% for video in videos %}
+            <div class="vid-list">
+                <a href="{% url 'play11' video.id %}">
+                    <img src="{{ video.thumbnail }}" class="thumbnail" alt="Video Thumbnail">
+                </a>
+                <div class="card">
+                    <img src="{%static 'images/tom.png'%}" alt="Channel Logo">
+                    <div class="vid-info">
+                        <a href="{% url 'play11' video.id %}">{{ video.title }}</a>
+                       
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    
+
+    <script src="{% static 'js/project.js' %}"></script>
+
+</body>
+</html>
