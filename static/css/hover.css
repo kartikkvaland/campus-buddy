@@ -1,0 +1,18 @@
+.form-field{
+    position: relative;
+}
+.placeholder{
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    padding: 0px 5px;
+    color: transparent;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+/* .input:focus + .placeholder {
+    top: -10px;
+    background-color: #ecf0f3;
+
+} */
